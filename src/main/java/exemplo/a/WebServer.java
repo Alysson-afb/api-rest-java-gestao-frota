@@ -15,13 +15,11 @@ public class WebServer {
 
         Server server = new Server(8080);
 
-        // Arquivos estáticos
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
         resourceHandler.setWelcomeFiles(new String[]{"index.html"});
         resourceHandler.setResourceBase("src/main/resources/web");
 
-        // API
         ServletContextHandler servletContext =
                 new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
 
@@ -31,7 +29,6 @@ public class WebServer {
                 "/veiculos/*"
         );
 
-        // Combina HTML + API
         HandlerList handlers = new HandlerList();
         handlers.addHandler(resourceHandler);
         handlers.addHandler(servletContext);

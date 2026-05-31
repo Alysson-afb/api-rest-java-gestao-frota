@@ -44,7 +44,6 @@
         <button class="tab-button" onclick="abrirTab(event, 'tab-veiculo')">2. Cadastro de Veículos</button>
     </div>
 
-    <!-- ABA 1 -->
     <div id="tab-frota" class="tab-content active">
         <h2>Visão Geral da Frota</h2>
         <button onclick="listarVeiculos()">Atualizar Lista</button>
@@ -60,7 +59,6 @@
         </table>
     </div>
 
-    <!-- ABA 2 -->
     <div id="tab-veiculo" class="tab-content">
         <h2>Cadastro de Veículos</h2>
         <input type="hidden" id="veiculoId">
@@ -91,7 +89,6 @@
     </div>
 
     <script>
-        // MUDANÇA NA URL DA API
         const API_URL = "http://localhost:8080/veiculos";
 
         function abrirTab(evt, tabName) {
@@ -106,7 +103,6 @@
 
         document.addEventListener("DOMContentLoaded", listarVeiculos);
 
-        // Função para formatar números (ex: 15000 -> 15.000)
         function formatarKm(valor) {
             if(!valor) return '0';
             return parseFloat(valor).toLocaleString('pt-BR');
@@ -116,7 +112,7 @@
             fetch(API_URL).then(r => r.json()).then(data => {
                 let htmlResumo = '', htmlCompleto = '';
                 data.forEach(v => {
-                    // Tabela Resumo (com formatação de KM)
+
                     htmlResumo += `<tr>
                         <td>${v.placa}</td>
                         <td>${v.modelo}</td>
@@ -125,7 +121,6 @@
                         <td>${formatarKm(v.proximaTrocaOleo)} km</td>
                     </tr>`;
                     
-                    // Tabela Completa
                     htmlCompleto += `
                         <tr>
                             <td>${v.placa}</td>
